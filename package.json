@@ -1,0 +1,17 @@
+{
+  "name": "maxcoin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cryptiles": "^4.1.3",
+    "mongodb": "^3.6.0",
+    "request": "^2.83.0",
+    "sshpk": "^1.16.1"
+  }
+}
