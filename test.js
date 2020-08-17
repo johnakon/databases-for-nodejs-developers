@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // request is a module that makes http calls easier
 const request = require('request');
 
@@ -34,6 +35,8 @@ function insertMongodb(collection, data) {
 }
 
 MongoClient.connect(dsn, (err, db) => {
+  console.time('mongodb');
+
   if (err) throw err;
   // eslint-disable-next-line no-console
   console.log('connected to server');
@@ -52,6 +55,18 @@ MongoClient.connect(dsn, (err, db) => {
       .then((result) => {
         // eslint-disable-next-line no-console
         console.log(`successfuly inserted ${result.length} documents into mongodb`);
+
+        // query data from the database
+        const options = { sort: [['value', 'desc']] };
+        // eslint-disable-next-line no-shadow
+        collection.findOne({}, options, (err, doc) => {
+          if (err) throw err;
+          // eslint-disable-next-line no-console
+          console.log(`Mongodb: The one month max value is ${doc.value} reached on ${doc.date}`);
+        });
+
+        console.time('mongodb');
+
         // eslint-disable-next-line no-unused-expressions
         db.close;
       })
